@@ -249,7 +249,6 @@ export default function Portfolio() {
     id: {
       greeting: "Halo, saya Patimah Sari Siregar",
       role: "Frontend, Backend & Fullstack Developer | UI/UX Enthusiast",
-      description: "Merancang pengalaman web yang cepat, intuitif, dan mudah diakses.",
       viewProjects: "Lihat Proyek",
       contactMe: "Hubungi Saya",
       downloadCV: "Unduh CV",
@@ -269,7 +268,6 @@ export default function Portfolio() {
     en: {
       greeting: "Hi, I'm Patimah Sari Siregar",
       role: "Frontend, Backend & Fullstack Developer | UI/UX Enthusiast",
-      description: "Designing web experiences that are fast, intuitive, and accessible.",
       viewProjects: "View Projects",
       contactMe: "Contact Me",
       downloadCV: "Download CV",
