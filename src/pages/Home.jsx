@@ -254,7 +254,7 @@ export default function Portfolio() {
       contactMe: "Hubungi Saya",
       downloadCV: "Unduh CV",
       aboutTitle: "Tentang Saya",
-      about1: "Saya adalah seorang Fullstack Developer yang antusias, berpengalaman dalam Frontend, Backend, dan memiliki ketertarikan mendalam pada UI/UX Design.",
+      about1: "Saya adalah masahasiswa D3 Manajemen Informatika semester akhir dengan pengalaman 2 tahun dalam pemrograman. Saya menguasai berbagai bahasa pemrograman seperti Java dan pengembangan Fullstack serta pemahaman dalam pengembangan web menggunakan framework seperti Laravel dan React. Siap untuk belajar dan berkembang di lingkungan kerja profesional.",
       about2: "Saya selalu mempelajari teknologi baru dan terus berkembang melalui proyek serta kolaborasi.",
       skillsTitle: "Keahlian Saya",
       projectsTitle: "Proyek Saya",
@@ -274,7 +274,7 @@ export default function Portfolio() {
       contactMe: "Contact Me",
       downloadCV: "Download CV",
       aboutTitle: "About Me",
-      about1: "I am an enthusiastic Fullstack Developer with experience in Frontend, Backend, and a strong passion for UI/UX Design.",
+      about1: "I am a final-year Diploma student in Information Management with 2 years of programming experience. I am proficient in various programming languages, including Java and Fullstack development, and have a strong understanding of web development using frameworks such as Laravel and React. I am eager to learn, grow, and contribute in a professional work environment.",
       about2: "I constantly learn new technologies and keep growing through projects and collaborations.",
       skillsTitle: "My Skills",
       projectsTitle: "My Projects",
@@ -288,17 +288,75 @@ export default function Portfolio() {
     }
   }[language];
 
-  // Skills data - DIPERBAIKI: Syntax error pada baris Node.js
-  const skills = [
-    { name: "HTML", level: 95, color: theme === "dark" ? "bg-orange-600" : "bg-orange-500" },
-    { name: "CSS", level: 90, color: theme === "dark" ? "bg-blue-600" : "bg-blue-500" },
-    { name: "JavaScript", level: 85, color: theme === "dark" ? "bg-yellow-600" : "bg-yellow-500" },
-    { name: "React", level: 80, color: theme === "dark" ? "bg-blue-600" : "bg-blue-400" },
-    { name: "Tailwind CSS", level: 85, color: theme === "dark" ? "bg-teal-600" : "bg-teal-400" },
-    { name: "Node.js", level: 70, color: theme === "dark" ? "bg-green-600" : "bg-green-500" }, // Diperbaiki
-    { name: "UI/UX Design", level: 80, color: theme === "dark" ? "bg-purple-600" : "bg-purple-500" }
-  ];
-
+// Skills data - Diubah menjadi icon-based dengan deskripsi
+const skills = [
+  { 
+    name: "HTML", 
+    description: language === "id" ? "Struktur Web" : "Web Structure",
+    icon: "🔶",
+    color: theme === "dark" ? "text-orange-400" : "text-orange-600"
+  },
+  { 
+    name: "CSS", 
+    description: language === "id" ? "Styling & Design" : "Styling & Design",
+    icon: "🎨",
+    color: theme === "dark" ? "text-blue-400" : "text-blue-600"
+  },
+  { 
+    name: "JavaScript", 
+    description: language === "id" ? "Interaktivitas" : "Interactivity",
+    icon: "📜",
+    color: theme === "dark" ? "text-yellow-400" : "text-yellow-600"
+  },
+  { 
+    name: "React", 
+    description: language === "id" ? "Library UI" : "UI Library",
+    icon: "⚛️",
+    color: theme === "dark" ? "text-blue-300" : "text-blue-500"
+  },
+  { 
+    name: "Tailwind CSS", 
+    description: language === "id" ? "Framework CSS" : "CSS Framework",
+    icon: "💨",
+    color: theme === "dark" ? "text-teal-400" : "text-teal-600"
+  },
+  { 
+    name: "Node.js", 
+    description: language === "id" ? "Runtime JavaScript" : "JavaScript Runtime",
+    icon: "🟢",
+    color: theme === "dark" ? "text-green-400" : "text-green-600"
+  },
+  { 
+    name: "Git/GitHub", 
+    description: language === "id" ? "Version Control" : "Version Control",
+    icon: "📂",
+    color: theme === "dark" ? "text-gray-400" : "text-gray-600"
+  },
+  { 
+    name: "MySQL", 
+    description: language === "id" ? "Database Relasional" : "Relational Database",
+    icon: "🐬",
+    color: theme === "dark" ? "text-blue-400" : "text-blue-600"
+  },
+  { 
+    name: "PostgreSQL", 
+    description: language === "id" ? "Database Advanced" : "Advanced Database",
+    icon: "🐘",
+    color: theme === "dark" ? "text-blue-500" : "text-blue-700"
+  },
+  { 
+    name: "Java Spring Boot", 
+    description: language === "id" ? "Framework Backend" : "Backend Framework",
+    icon: "☕",
+    color: theme === "dark" ? "text-red-400" : "text-red-600"
+  },
+  { 
+    name: "UI/UX Design", 
+    description: language === "id" ? "Desain Pengalaman" : "Experience Design",
+    icon: "🎯",
+    color: theme === "dark" ? "text-purple-400" : "text-purple-600"
+  }
+];
   // Projects
   const projects = [
     {
@@ -629,33 +687,51 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className={`py-20 px-6 backdrop-blur-sm transition-colors duration-300 ${theme === "dark" ? "bg-gray-800/80" : "bg-white/80"}`}>
-        <div className="max-w-6xl mx-auto">
-          <h2 className={`text-4xl ${fonts.heading} text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-600`}>
-            {t.skillsTitle}
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {skills.map((skill, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex justify-between">
-                  <span className={`font-medium ${fonts.body} ${theme === "dark" ? "text-gray-300" : "text-gray-800"}`}>{skill.name}</span>
-                  <span className={`${fonts.body} ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}>{skill.level}%</span>
-                </div>
-                <div className={`w-full rounded-full h-2.5 ${theme === "dark" ? "bg-gray-700" : "bg-gray-200"}`}>
-                  <div 
-                    className={`h-2.5 rounded-full ${skill.color}`}
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-          </div>
+{/* Skills Section */}
+<section id="skills" className={`py-20 px-6 backdrop-blur-sm transition-colors duration-300 ${theme === "dark" ? "bg-gray-800/80" : "bg-white/80"}`}>
+  <div className="max-w-6xl mx-auto">
+    <h2 className={`text-4xl ${fonts.heading} text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-600`}>
+      {t.skillsTitle}
+    </h2>
+    
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      {skills.map((skill, index) => (
+        <div 
+          key={index} 
+          className={`flex flex-col items-center p-5 rounded-xl border transition-all duration-300 hover:scale-105 ${
+            theme === "dark" 
+              ? "bg-gray-800 border-gray-700 hover:bg-gray-750" 
+              : "bg-white border-gray-200 hover:bg-gray-50"
+          } shadow-sm hover:shadow-md`}
+        >
+          <span className="text-3xl mb-2">{skill.icon}</span>
+          <h3 className={`text-md ${fonts.cardTitle} mb-1 text-center ${skill.color}`}>
+            {skill.name}
+          </h3>
+          <span className={`text-xs ${fonts.body} font-medium ${
+            theme === "dark" ? "text-gray-400" : "text-gray-600"
+          } text-center`}>
+            {skill.description}
+          </span>
         </div>
-      </section>
+      ))}
+    </div>
 
-      {/* Projects Section */}
+    {/* Additional Skills Info */}
+    <div className={`mt-12 p-6 rounded-2xl text-center ${
+      theme === "dark" ? "bg-gray-800/50" : "bg-white/50"
+    }`}>
+      <p className={`${fonts.body} ${
+        theme === "dark" ? "text-gray-300" : "text-gray-700"
+      }`}>
+        {language === 'id' 
+          ? 'Terus mengembangkan skill dalam teknologi modern dan framework terbaru' 
+          : 'Continuously developing skills in modern technologies and latest frameworks'}
+      </p>
+    </div>
+  </div>
+</section> 
+{/* Projects Section */}
       <section id="projects" className={`py-20 px-6 transition-colors duration-300 ${theme === "dark" ? "bg-gradient-to-br from-gray-800 to-gray-900" : "bg-gradient-to-br from-rose-50 to-purple-50"}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className={`text-4xl ${fonts.heading} text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600`}>
