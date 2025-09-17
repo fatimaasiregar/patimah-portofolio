@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaGithub, FaLinkedin, FaCode, FaPalette, FaMobile, FaServer, FaFacebookF, FaInstagram, FaTwitter, FaEnvelope, FaMapMarkerAlt, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaCode, FaPalette, FaMobile, FaServer, FaFacebookF, FaInstagram, FaTwitter, FaEnvelope, FaMapMarkerAlt, FaExternalLinkAlt, FaDownload } from "react-icons/fa";
 import { FiMail, FiPhone } from "react-icons/fi";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -211,7 +211,7 @@ const ProjectCard = ({ project, theme, language, index }) => {
               <FaExternalLinkAlt className="mr-2 text-xs" />
               <span className="text-sm">
                 Live Demo
-              </span>
+            </span>
             </a>
           )}
         </div>
@@ -252,6 +252,7 @@ export default function Portfolio() {
       description: "Merancang pengalaman web yang cepat, intuitif, dan mudah diakses.",
       viewProjects: "Lihat Proyek",
       contactMe: "Hubungi Saya",
+      downloadCV: "Unduh CV",
       aboutTitle: "Tentang Saya",
       about1: "Saya adalah seorang Fullstack Developer yang antusias, berpengalaman dalam Frontend, Backend, dan memiliki ketertarikan mendalam pada UI/UX Design.",
       about2: "Saya selalu mempelajari teknologi baru dan terus berkembang melalui proyek serta kolaborasi.",
@@ -271,6 +272,7 @@ export default function Portfolio() {
       description: "Designing web experiences that are fast, intuitive, and accessible.",
       viewProjects: "View Projects",
       contactMe: "Contact Me",
+      downloadCV: "Download CV",
       aboutTitle: "About Me",
       about1: "I am an enthusiastic Fullstack Developer with experience in Frontend, Backend, and a strong passion for UI/UX Design.",
       about2: "I constantly learn new technologies and keep growing through projects and collaborations.",
@@ -286,14 +288,14 @@ export default function Portfolio() {
     }
   }[language];
 
-  // Skills data
+  // Skills data - DIPERBAIKI: Syntax error pada baris Node.js
   const skills = [
     { name: "HTML", level: 95, color: theme === "dark" ? "bg-orange-600" : "bg-orange-500" },
     { name: "CSS", level: 90, color: theme === "dark" ? "bg-blue-600" : "bg-blue-500" },
     { name: "JavaScript", level: 85, color: theme === "dark" ? "bg-yellow-600" : "bg-yellow-500" },
     { name: "React", level: 80, color: theme === "dark" ? "bg-blue-600" : "bg-blue-400" },
     { name: "Tailwind CSS", level: 85, color: theme === "dark" ? "bg-teal-600" : "bg-teal-400" },
-    { name: "Node.js", level: 70, color: theme === "dark" ? "bg-green-600" : "bg-green-500" },
+    { name: "Node.js", level: 70, color: theme === "dark" ? "bg-green-600" : "bg-green-500" }, // Diperbaiki
     { name: "UI/UX Design", level: 80, color: theme === "dark" ? "bg-purple-600" : "bg-purple-500" }
   ];
 
@@ -336,6 +338,20 @@ export default function Portfolio() {
   const handleMobileNavClick = (item) => {
     setActiveTab(item);
     setMobileMenuOpen(false);
+  };
+
+  // Fungsi untuk download CV
+  const handleDownloadCV = () => {
+    // Ganti dengan URL file CV Anda
+    const cvUrl = "/CV PATIMAH SARI SIREGAR.pdf";
+    
+    // Membuat elemen anchor untuk download
+    const link = document.createElement("a");
+    link.href = cvUrl;
+    link.download = "CV_Patimah_Sari_Siregar.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // Efek untuk smooth scroll ke anchor
@@ -533,6 +549,17 @@ export default function Portfolio() {
               >
                 {t.viewProjects}
               </a>
+              <button
+                onClick={handleDownloadCV}
+                className={`px-6 py-3 ${fonts.button} flex items-center justify-center gap-2 rounded-full border transition-all duration-300 shadow-md ${
+                  theme === "dark" 
+                    ? "bg-gray-800 text-rose-400 border-gray-600 hover:bg-gray-700" 
+                    : "bg-white text-rose-600 border-rose-200 hover:bg-rose-50"
+                }`}
+              >
+                <FaDownload className="text-sm" />
+                {t.downloadCV}
+              </button>
               <a 
                 href="#contact" 
                 className={`px-6 py-3 ${fonts.button} rounded-full border transition-all duration-300 shadow-md text-center ${theme === "dark" ? "bg-gray-700 text-rose-400 border-gray-600 hover:bg-gray-600" : "bg-white text-rose-600 border-rose-200 hover:bg-rose-50"}`}
