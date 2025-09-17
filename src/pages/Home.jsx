@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaCode, FaPalette, FaMobile, FaServer, FaFacebookF, FaInstagram, FaTwitter, FaEnvelope, FaMapMarkerAlt, FaExternalLinkAlt } from "react-icons/fa";
 import { FiMail, FiPhone } from "react-icons/fi";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 // Komponen Footer yang sudah mendukung mode gelap
 const Footer = ({ theme, language }) => {
@@ -112,6 +113,7 @@ const Footer = ({ theme, language }) => {
 // Komponen Project Card yang terpisah untuk reusable
 const ProjectCard = ({ project, theme, language, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  
 
   return (
     <div 
@@ -222,8 +224,9 @@ export default function Portfolio() {
   const [language, setLanguage] = useState("id");
   const [activeTab, setActiveTab] = useState("home");
   const [theme, setTheme] = useState("light");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State untuk menu mobile
 
-  // Font classes for consistent typography - DIPINDAHKAN KE SINI
+  // Font classes for consistent typography
   const fonts = {
     heading: "font-['Poppins'] font-bold",
     subheading: "font-['Poppins'] font-semibold",
@@ -297,7 +300,7 @@ export default function Portfolio() {
   // Projects
   const projects = [
     {
-      img: "public/glowup.jpg",
+      img: "/glowup.jpg",
       title: "Glow Up Patimah",
       desc:
         language === "id"
@@ -307,7 +310,7 @@ export default function Portfolio() {
       tags: ["HTML", "CSS", "E-Commerce", "API"],
     },
     {
-      img: "public/movie.jpg",
+      img: "/movie.jpg",
       title: "Cine-Fatima",
       desc:
         language === "id"
@@ -318,7 +321,7 @@ export default function Portfolio() {
       tags: ["React", "HTML", "Movies",],
     },
     {
-      img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      img: "/photo-1565299624946-b28f40a0ae38.avif",
       title: "ZharfaFood",
       desc:
         language === "id"
@@ -328,6 +331,12 @@ export default function Portfolio() {
       tags: ["fullstack", "React-Javaspringboot", "Tailwind", "Food App"],
     },
   ];
+
+  // Fungsi untuk menutup menu mobile saat mengklik link
+  const handleMobileNavClick = (item) => {
+    setActiveTab(item);
+    setMobileMenuOpen(false);
+  };
 
   // Efek untuk smooth scroll ke anchor
   useEffect(() => {
@@ -342,6 +351,7 @@ export default function Portfolio() {
             behavior: 'smooth'
           });
           setActiveTab(targetId.substring(1));
+          setMobileMenuOpen(false); // Tutup menu mobile setelah klik
         }
       }
     };
@@ -396,8 +406,11 @@ export default function Portfolio() {
 
   return (
     <div className={`min-h-screen ${fonts.body} ${backgroundStyle} bg-fixed transition-colors duration-300 ${theme === "dark" ? "text-gray-200" : "text-gray-800"}`}>
-      {/* Navigation - Diperbaiki untuk tema gelap */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-colors duration-300 ${theme === "dark" ? "bg-gray-900/90 text-gray-200 border-b border-gray-700" : "bg-white/90 text-gray-800 border-b border-gray-200"} shadow-sm`}>
+      {/* Navigation - Diperbarui dengan menu hamburger */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-colors duration-300 
+        ${theme === "dark" 
+          ? "bg-gray-900/90 text-gray-200 border-b border-gray-700" 
+          : "bg-white/90 text-gray-800 border-b border-gray-200"} shadow-sm`}>
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <a 
             href="#home" 
@@ -406,6 +419,8 @@ export default function Portfolio() {
           >
             Patimah Sari Siregar.
           </a>
+
+          {/* Menu desktop */}
           <div className="hidden md:flex space-x-8">
             {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
               <a 
@@ -424,16 +439,15 @@ export default function Portfolio() {
               </a>
             ))}
           </div>
+
+          {/* Tombol kanan (bahasa + tema) */}
           <div className="flex items-center gap-3">
-            
-            {/* Tombol toggle bahasa */}
             <button
               onClick={() => setLanguage(language === "id" ? "en" : "id")}
               className={`px-4 py-2 ${fonts.button} bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300`}
             >
               {language === "id" ? "EN" : "ID"}
             </button>
-            {/* Tombol toggle tema */}
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className={`px-4 py-2 ${fonts.button} rounded-full shadow-md hover:shadow-lg transition-all duration-300 ${
@@ -444,48 +458,84 @@ export default function Portfolio() {
             >
               {theme === "dark" ? "☀️" : "🌙"}
             </button>
+
+            {/* Tombol hamburger mobile */}
+            <button 
+              className="md:hidden text-2xl z-50"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
+        </div>
+
+        {/* Menu Mobile */}
+        <div className={`md:hidden fixed top-0 left-0 w-full h-screen transition-transform duration-300 ease-in-out z-40
+          ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div 
+            className={`absolute inset-0 ${theme === "dark" ? "bg-gray-900/95" : "bg-white/95"}`}
+            onClick={() => setMobileMenuOpen(false)}
+          ></div>
+          
+          <div className={`relative z-10 h-full flex flex-col items-center justify-center space-y-8 ${fonts.navigation}`}>
+            {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
+              <a 
+                key={item}
+                href={`#${item}`}
+                className={`text-2xl capitalize ${
+                  activeTab === item 
+                    ? 'text-rose-600' 
+                    : theme === "dark" 
+                      ? "text-gray-300" 
+                      : "text-gray-600"
+                } transition-colors duration-300`}
+                onClick={() => handleMobileNavClick(item)}
+              >
+                {t[`${item}Title`] || item}
+              </a>
+            ))}
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden pt-20">
+      {/* Hero Section - DIPERBAIKI: Menambahkan padding atas yang cukup */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden pt-24 md:pt-28">
         {/* Animated background elements */}
         <div className={`absolute -top-64 -left-64 w-[800px] h-[800px] rounded-full opacity-10 mix-blend-multiply animate-blob animation-delay-2000 ${theme === "dark" ? "bg-rose-900" : "bg-rose-300"}`}></div>
         <div className={`absolute -bottom-96 right-0 w-[700px] h-[700px] rounded-full opacity-10 mix-blend-multiply animate-blob animation-delay-4000 ${theme === "dark" ? "bg-purple-900" : "bg-purple-300"}`}></div>
         <div className={`absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full opacity-10 mix-blend-multiply animate-blob ${theme === "dark" ? "bg-indigo-900" : "bg-indigo-300"}`}></div>
 
-        <div className="relative flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+        <div className="relative flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mt-8 md:mt-0">
           {/* Glow effect */}
           <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 blur-2xl opacity-30"></div>
           
-          {/* Foto profil */}
-          <div className="relative">
+          {/* Foto profil - DIPERBAIKI: Responsivitas untuk berbagai ukuran layar */}
+          <div className="relative order-2 md:order-1">
             <div className="absolute w-full h-full rounded-full bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 blur-md opacity-70"></div>
             <img
-              src="public/foto patimah.jpg"
+              src="/foto patimah.jpg"
               alt="Profile"
-              className="relative w-64 h-64 md:w-80 md:h-80 rounded-full shadow-2xl border-4 object-cover"
+              className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full shadow-2xl border-4 object-cover"
             />
           </div>
 
-          <div className={`space-y-6 backdrop-blur-sm p-8 rounded-2xl border transition-colors duration-300 ${theme === "dark" ? "bg-gray-800/30 border-gray-700" : "bg-white/30 border-white/20"}`}>
-            <h1 className={`text-4xl md:text-5xl lg:text-6xl ${fonts.heading} leading-tight ${theme === "dark" ? "text-white" : "text-gray-800"}`}>
+          <div className={`space-y-6 backdrop-blur-sm p-6 md:p-8 rounded-2xl border transition-colors duration-300 order-1 md:order-2 ${theme === "dark" ? "bg-gray-800/30 border-gray-700" : "bg-white/30 border-white/20"}`}>
+            <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${fonts.heading} leading-tight ${theme === "dark" ? "text-white" : "text-gray-800"}`}>
               {t.greeting}
             </h1>
-            <p className={`text-xl md:text-2xl ${fonts.subheading} text-rose-600`}>{t.role}</p>
-            <p className={`text-lg ${fonts.body} ${theme === "dark" ? "text-gray-300" : "text-gray-700"} max-w-xl`}>{t.description}</p>
+            <p className={`text-lg sm:text-xl md:text-2xl ${fonts.subheading} text-rose-600`}>{t.role}</p>
+            <p className={`text-base sm:text-lg ${fonts.body} ${theme === "dark" ? "text-gray-300" : "text-gray-700"} max-w-xl`}>{t.description}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a 
                 href="#projects" 
-                className={`px-6 py-3 ${fonts.button} bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-full hover:shadow-lg transition-all duration-300 shadow-md`}
+                className={`px-6 py-3 ${fonts.button} bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-full hover:shadow-lg transition-all duration-300 shadow-md text-center`}
                 onClick={() => setActiveTab("projects")}
               >
                 {t.viewProjects}
               </a>
               <a 
                 href="#contact" 
-                className={`px-6 py-3 ${fonts.button} rounded-full border transition-all duration-300 shadow-md ${theme === "dark" ? "bg-gray-700 text-rose-400 border-gray-600 hover:bg-gray-600" : "bg-white text-rose-600 border-rose-200 hover:bg-rose-50"}`}
+                className={`px-6 py-3 ${fonts.button} rounded-full border transition-all duration-300 shadow-md text-center ${theme === "dark" ? "bg-gray-700 text-rose-400 border-gray-600 hover:bg-gray-600" : "bg-white text-rose-600 border-rose-200 hover:bg-rose-50"}`}
                 onClick={() => setActiveTab("contact")}
               >
                 {t.contactMe}
