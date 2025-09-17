@@ -254,7 +254,7 @@ export default function Portfolio() {
       contactMe: "Hubungi Saya",
       downloadCV: "Unduh CV",
       aboutTitle: "Tentang Saya",
-      about1: "Saya adalah masahasiswa D3 Manajemen Informatika semester akhir dengan pengalaman 2 tahun dalam pemrograman. Saya menguasai berbagai bahasa pemrograman seperti Java dan pengembangan Fullstack serta pemahaman dalam pengembangan web menggunakan framework seperti Laravel dan React. Siap untuk belajar dan berkembang di lingkungan kerja profesional.",
+      about1: "Saya adalah mahasiswa D3 Manajemen Informatika semester akhir dengan pengalaman 2 tahun dalam pemrograman. Saya menguasai berbagai bahasa pemrograman seperti Java dan pengembangan Fullstack serta pemahaman dalam pengembangan web menggunakan framework seperti Laravel dan React. Siap untuk belajar dan berkembang di lingkungan kerja profesional.",
       about2: "Saya selalu mempelajari teknologi baru dan terus berkembang melalui proyek serta kolaborasi.",
       skillsTitle: "Keahlian Saya",
       projectsTitle: "Proyek Saya",
@@ -288,7 +288,6 @@ export default function Portfolio() {
     }
   }[language];
 
-// Skills data - Diubah menjadi icon-based dengan deskripsi
 const skills = [
   { 
     name: "HTML", 
@@ -364,8 +363,8 @@ const skills = [
       title: "Glow Up Patimah",
       desc:
         language === "id"
-          ? "Aplikasi penjualan makeup online dengan fitur lengkap untuk pengalaman berbelanja yang menyenangkan."
-          : "Makeup e-commerce application with complete features for a pleasant shopping experience.",
+          ? "Aplikasi penjualan makeup online dengan menampilkan katalog produk dan berita kosmetik."
+          : "An online makeup sales application that features a product catalog and cosmetic news.",
       link: "https://github.com/fatimaasiregar/PATIMAH-SARI-SIREGAR",
       tags: ["HTML", "CSS", "E-Commerce", "API"],
     },
@@ -374,8 +373,8 @@ const skills = [
       title: "Cine-Fatima",
       desc:
         language === "id"
-          ? "Website untuk pencarian dan informasi film dengan database yang lengkap dan antarmuka yang user-friendly."
-          : "Movie information and search website with complete database and user-friendly interface.",
+          ? "Website untuk pencarian dan informasi film dengan lengkap dan antarmuka yang user-friendly."
+          : "A website for comprehensive movie search and information with a user-friendly interface.",
       link: "https://github.com/fatimaasiregar/Cine-Fatima",
       vercelLink: "https://cine-fatima-pprd.vercel.app/",
       tags: ["React", "HTML", "Movies",],
@@ -385,8 +384,8 @@ const skills = [
       title: "ZharfaFood",
       desc:
         language === "id"
-          ? "Aplikasi pemesanan makanan online dengan sistem pembayaran yang aman dan pengiriman yang cepat."
-          : "Online food ordering application with secure payment system and fast delivery.",
+          ? "Aplikasi pemesanan makanan online dengan database postgresql."
+          : "An online food ordering application with a PostgreSQL database.",
       link: "https://github.com/fatimaasiregar/pemesanan-makanan-online",
       tags: ["fullstack", "React-Javaspringboot", "Tailwind", "Food App"],
     },
@@ -721,13 +720,7 @@ const skills = [
     <div className={`mt-12 p-6 rounded-2xl text-center ${
       theme === "dark" ? "bg-gray-800/50" : "bg-white/50"
     }`}>
-      <p className={`${fonts.body} ${
-        theme === "dark" ? "text-gray-300" : "text-gray-700"
-      }`}>
-        {language === 'id' 
-          ? 'Terus mengembangkan skill dalam teknologi modern dan framework terbaru' 
-          : 'Continuously developing skills in modern technologies and latest frameworks'}
-      </p>
+
     </div>
   </div>
 </section> 
