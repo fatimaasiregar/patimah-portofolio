@@ -323,7 +323,7 @@ export default function Portfolio() {
       tags: ["React", "HTML", "Movies",],
     },
     {
-      img: "/photo-1565299624946-b28f40a0ae38.avif",
+      img: "/food.jpg",
       title: "ZharfaFood",
       desc:
         language === "id"
