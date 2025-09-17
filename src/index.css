@@ -1,0 +1,22 @@
+@import "tailwindcss";
+html {
+  scroll-behavior: smooth;
+}
+/* Custom untuk tema */
+:root {
+  --bg-light: #ffffff;
+  --text-light: #111111;
+
+  --bg-dark: #111111;
+  --text-dark: #ffffff;
+}
+
+body.light {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
