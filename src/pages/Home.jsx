@@ -375,15 +375,15 @@ const skills = [
           : "A website for comprehensive movie search and information with a user-friendly interface.",
       link: "https://github.com/fatimaasiregar/Cine-Fatima",
       vercelLink: "https://cine-fatima-pprd.vercel.app/",
-      tags: ["React", "HTML", "Movies",],
+      tags: ["React", "Tailwind", "Movies",],
     },
     {
       img: "/food.jpg",
       title: "ZharfaFood",
       desc:
         language === "id"
-          ? "Aplikasi pemesanan makanan online dengan database postgresql."
-          : "An online food ordering application with a PostgreSQL database.",
+          ? "Aplikasi pemesanan makanan online dengan menggunakan database postgresql."
+          : "Online food ordering application using PostgreSQL database.",
       link: "https://github.com/fatimaasiregar/pemesanan-makanan-online",
       tags: ["fullstack", "React-Javaspringboot", "Tailwind", "Food App"],
     },
